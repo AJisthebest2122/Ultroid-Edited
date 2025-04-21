@@ -70,10 +70,13 @@ def load_other_plugins(addons=None, pmbot=None, manager=None, vcbot=None):
         if url := udB.get_key("ADDONS_URL"):
             subprocess.run(f"git clone -q {url} addons", shell=True)
         if os.path.exists("addons") and not os.path.exists("addons/.git"):
-            rmtree("addons")
-        if not os.path.exists("addons"):
+            rmtree("addons")        if not os.path.exists("addons"):
+            try:
+                branch = Repo().active_branch
+            except:
+                branch = "main"  # Default to main branch if we're in a Heroku environment with no Git repo
             subprocess.run(
-                f"git clone -q -b {Repo().active_branch} https://github.com/TeamUltroid/UltroidAddons.git addons",
+                f"git clone -q -b {branch} https://github.com/TeamUltroid/UltroidAddons.git addons",
                 shell=True,
             )
         else:

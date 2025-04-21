@@ -1,11 +1,35 @@
-# Important Requirements here.
-telethon
+# Ultroid Extended - Heroku Optimized Requirements
+# Core requirements
+telethon>=1.24.0
+python-decouple>=3.4
+python-dotenv>=0.19.0
+redis>=4.1.0
+hiredis>=2.0.0
+
+# Patches and custom libraries
 https://github.com/New-dev0/Telethon-Patch/archive/main.zip
-python-decouple
-python-dotenv
-telegraph
-enhancer
-requests
-aiohttp
-catbox-uploader
-cloudscraper
+
+# Web server requirements for Heroku
+Flask>=2.0.1
+gunicorn>=20.1.0
+
+# Media and communication
+telegraph>=2.1.0
+enhancer>=0.3.4
+requests>=2.27.1
+aiohttp>=3.8.1
+httpx>=0.22.0
+beautifulsoup4>=4.10.0
+cloudscraper>=1.2.58
+Pillow>=9.0.0
+
+# Utilities
+psycopg2-binary>=2.9.3
+pymongo[srv]>=4.0.1
+
+# The catbox-uploader can be resource-intensive on Heroku, but included for compatibility
+catbox-uploader>=1.4.0
+
+# Excluded potentially problematic packages for Heroku:
+# - yt-dlp (can cause memory issues on Heroku)
+# - pytgcalls (voice call functionality may exceed Heroku resource limits)

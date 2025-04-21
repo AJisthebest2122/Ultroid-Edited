@@ -1,20 +1,31 @@
-# Ultroid - UserBot
-# Copyright (C) 2021-2025 TeamUltroid
-# This file is a part of < https://github.com/TeamUltroid/Ultroid/ >
-# PLease read the GNU Affero General Public License in <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
+# Ultroid Extended - Heroku Optimized Version
+# Based on Ultroid by TeamUltroid
+# Modified for Heroku compatibility
 
-FROM theteamultroid/ultroid:main
+FROM python:3.10-slim
 
-# set timezone
+WORKDIR /app
+
+# Install required packages while keeping the image size small
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    curl \
+    ffmpeg \
+    mediainfo \
+    neofetch \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the project files
+COPY . .
+
+# Set timezone
 ENV TZ=Asia/Kolkata
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-COPY installer.sh .
-
-RUN bash installer.sh
-
-# changing workdir
-WORKDIR "/root/TeamUltroid"
-
-# start the bot.
+# Define command to run on container start
 CMD ["bash", "startup"]

@@ -1,0 +1,2 @@
+web: gunicorn pyUltroid.web:app --bind 0.0.0.0:$PORT --worker-class gthread --workers 3
+worker: bash startup

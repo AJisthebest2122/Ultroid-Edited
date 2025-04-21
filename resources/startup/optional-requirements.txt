@@ -1,33 +1,41 @@
-# Required only for Local Deploys
-# ------------------------------------------------------ #
+# Heroku-optimized Optional Requirements
+# Modified for Ultroid Extended - Heroku Edition
 
-akipy
+# Core utilities
 apscheduler
 aiohttp
 bs4
-enhancer>=0.3.4
-git+https://github.com/New-dev0/instagrapi.git@39df1b1#egg=instagrapi
-git+https://github.com/buddhhu/img2html.git@c44170d#egg=img2html
-heroku3
-gitpython
-google-api-python-client
-htmlwebshot
-lottie
-lxml
-numpy>=1.21.2
-oauth2client
-opencv-python-headless
-pillow>=9.0.0
-profanitydetector
-psutil
-pypdf2>=1.26.0
-pytz
-qrcode
 requests
-twikit
+pytz
 tabulate
-telegraph
 tgcrypto
+
+# Lightweight tools that work well on Heroku
+qrcode
+telegraph
+htmlwebshot
+pillow>=9.0.0
+pypdf2>=1.26.0
+psutil
+
+# API clients that are Heroku-friendly
+heroku3
+google-api-python-client
+oauth2client
+gitpython
+
+# Search functionality
 youtube-search-python
-yt-dlp
-# -------------------------------------------------------#
+
+# Text processing
+profanitydetector
+tabulate
+
+# Note: The following packages were removed as they may cause issues on Heroku:
+# - yt-dlp (resource heavy, potential ToS issues)
+# - opencv-python-headless (large package, memory intensive)
+# - numpy (large package size)
+# - lottie (resource intensive)
+# - instagrapi (potential API violations)
+# - img2html (resource intensive)
+# - akipy (not necessary for core functionality)

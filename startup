@@ -1,19 +1,39 @@
 #!/usr/bin/env bash
-# Ultroid - UserBot
-# Copyright (C) 2021-2025 TeamUltroid
-#
-# This file is a part of < https://github.com/TeamUltroid/Ultroid/ >
-# PLease read the GNU Affero General Public License in <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
-
+# Ultroid Extended - Heroku Optimized Version
+# Modified startup script for Heroku compatibility
 
 echo "
             ┏┳┓╋┏┓╋╋╋╋┏┓┏┓
             ┃┃┣┓┃┗┳┳┳━╋╋┛┃
             ┃┃┃┗┫┏┫┏┫╋┃┃╋┃
             ┗━┻━┻━┻┛┗━┻┻━┛
-
-      Visit @TheUltroid for updates!!
-
+   
+      Ultroid Extended - Heroku Edition
+      https://github.com/ThePrateekBhatia/Ultroid
 "
-if [ -f .env ] ; then  set -o allexport; source .env; set +o allexport ; fi
-if [ $SESSION1 ] ; then wget https://gist.github.com/1Danish-00/6554f034549197e5824972b01f631e0c/raw/main.py && python3 main.py ; else python3 -m pyUltroid ; fi
+
+# Handle Heroku environment variables and configuration
+if [ -f .env ]; then
+    set -o allexport
+    source .env
+    set +o allexport
+fi
+
+# Support for both SESSION and SESSION1 variables (Heroku compatibility)
+if [ -n "$SESSION" ] && [ -z "$SESSION1" ]; then
+    export SESSION1="$SESSION"
+fi
+
+# Set Redis URL if provided by Heroku
+if [ -n "$REDIS_URL" ] && [ -z "$REDIS_URI" ]; then
+    export REDIS_URI="$REDIS_URL"
+fi
+
+# Start the bot
+if [ -n "$SESSION1" ]; then
+    echo "Starting Ultroid Extended..."
+    python3 -m pyUltroid
+else
+    echo "No session string found. Please set the SESSION environment variable."
+    exit 1
+fi

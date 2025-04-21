@@ -1,0 +1,20 @@
+# Heroku Slugignore - files to be excluded from deployment
+.github/
+.git/
+resources/extras/
+resources/fonts/
+__pycache__/
+*.pyc
+*.pyo
+*.log
+*.session
+*.session-journal
+test*
+contributing*
+CODE_OF_CONDUCT.md
+*.mp4
+*.webm
+*.avi
+*.flv
+draft*
+temp*

@@ -1,47 +1,45 @@
-.env
-*.session-journal
-*.session
-build
-test*
-*.mp3
-*.webm
-*.webp
-*.mp4
-*.tgs
-*.txt
-/*.jpg
-/*.png
-/*.mp4
-*.log
-target/npmlist.json
-package-lock.json
-ultroid.json
-resources/extras/thumbnail.jpg
-resources/auth/
-
-# Directories
-addons/
-vcbot/
+# Python
 __pycache__/
-venv/
-node_modules/
-glitch_me/
-src/glitch-me
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Logs
+*.log
+logs/
+ultroid.log
+
+# Session files
+*.session
+*.session-journal
+
+# Config files
+.env
+config.env
+
+# Bot media storage
+downloads/
+cache/
+
+# Other
+.DS_Store
 .idea/
 .vscode/
-temp/
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
-.settings/
-*.swf
-*.air
-*.ipa
-*.apk
-
-# temporary files
-*.raw
-
-# fly.io configs
-fly.toml
+*.swp
+*.bak

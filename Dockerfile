@@ -17,8 +17,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements and install dependencies
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir wheel
 COPY requirements.txt .
+COPY resources/startup/optional-requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r optional-requirements.txt
 
 # Copy the project files
 COPY . .
